@@ -8,8 +8,14 @@ jobs:
 
       - name: Download libraries
         run: |
-          git clone https://github.com/ocornut/imgui.git
-          git clone https://github.com/jmpews/Dobby.git dobby
+          git clone --depth 1 https://github.com/ocornut/imgui.git
+          git clone --depth 1 https://github.com/jmpews/Dobby.git dobby
+
+      - name: Check files
+        run: |
+          ls -la
+          ls -la imgui | head -n 5
+          ls -la dobby/source | head -n 5
 
       - uses: nttld/setup-ndk@v1
         with:
