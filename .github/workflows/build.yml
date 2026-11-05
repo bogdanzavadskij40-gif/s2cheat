@@ -13,7 +13,9 @@ jobs:
 
       - name: Patch Dobby asm for NDK
         run: |
+          # Заменяем @PAGE и @PAGEOFF на синтаксис, понятный NDK
           sed -i 's/@PAGE/:pg_hi21:/g' dobby/source/TrampolineBridge/ClosureTrampolineBridge/arm64/closure_bridge_arm64.asm
+          sed -i 's/@PAGEOFF/:lo12:/g' dobby/source/TrampolineBridge/ClosureTrampolineBridge/arm64/closure_bridge_arm64.asm
 
       - uses: nttld/setup-ndk@v1
         with:
