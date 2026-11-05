@@ -2,8 +2,11 @@ cmake_minimum_required(VERSION 3.18)
 project(s2cheat CXX)
 set(CMAKE_CXX_STANDARD 17)
 
-# Подключаем Dobby как подпроект
 add_subdirectory(dobby)
+
+if(ANDROID)
+    set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -march=armv8-a")
+endif()
 
 add_library(standoff2_cheat SHARED main.cpp
     imgui/imgui.cpp
@@ -14,6 +17,5 @@ add_library(standoff2_cheat SHARED main.cpp
 )
 
 target_include_directories(standoff2_cheat PRIVATE . imgui imgui/backends dobby/include)
-# Линкуем основную библиотеку с Dobby
 target_link_libraries(standoff2_cheat log android EGL GLESv3 dl dobby)
 target_compile_options(standoff2_cheat PRIVATE -O2 -fvisibility=hidden -fno-exceptions -fno-rtti)
