@@ -11,6 +11,10 @@ jobs:
           git clone --depth 1 https://github.com/ocornut/imgui.git
           git clone --depth 1 --recursive https://github.com/jmpews/Dobby.git dobby
 
+      - name: Patch Dobby asm for NDK
+        run: |
+          sed -i 's/@PAGE/:pg_hi21:/g' dobby/source/TrampolineBridge/ClosureTrampolineBridge/arm64/closure_bridge_arm64.asm
+
       - uses: nttld/setup-ndk@v1
         with:
           ndk-version: r25c
