@@ -2,16 +2,7 @@ cmake_minimum_required(VERSION 3.18)
 project(s2cheat CXX)
 set(CMAKE_CXX_STANDARD 17)
 
-# Явно указываем NDK использовать внешний ассемблер
-set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -fno-integrated-as -march=armv8-a")
-
 add_subdirectory(dobby)
-
-# Указываем CMake, что это файл ассемблера
-set_source_files_properties(
-    dobby/source/TrampolineBridge/ClosureTrampolineBridge/arm64/closure_bridge_arm64.asm
-    PROPERTIES LANGUAGE ASM
-)
 
 add_library(standoff2_cheat SHARED main.cpp
     imgui/imgui.cpp
