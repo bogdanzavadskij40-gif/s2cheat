@@ -9,7 +9,7 @@ jobs:
       - name: Download libraries
         run: |
           git clone --depth 1 https://github.com/ocornut/imgui.git
-          git clone --depth 1 https://github.com/jmpews/Dobby.git dobby
+          git clone --depth 1 --recursive https://github.com/jmpews/Dobby.git dobby
 
       - uses: nttld/setup-ndk@v1
         with:
